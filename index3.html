@@ -25,21 +25,17 @@
             </h3>
 
             <div class="input-group rounded mb-3">
-              <form id="forms">
+              <form id="search-form">
                 <input
                   type="search"
                   class="form-control rounded"
-                  placeholder="Search for your city"
+                  placeholder="Search for a city"
                   aria-label="Search"
                   aria-describedby="search-addon"
-                  id="query"
+                  id="city-input"
                 />
                 <input type="submit" value="Search" class="btn btn-success" />
               </form>
-            </div>
-
-            <div class="mb-4 pb-2">
-              <div class="form-check form-check-inline"></div>
             </div>
 
             <div class="card shadow-0 border">
@@ -57,24 +53,20 @@
                   />
                 </div>
 
-                <div class="d-flex flex-row align-items-center">
-                  <ul>
-                    <ol>
-                      <span id="daytime">Thursday 14:20</span>
-                    </ol>
-                    <ol>
-                      Windspeed:
-                      <span id="speed">14</span
-                      >km/hr
-                    </ol>
-                    <ol>
-                      Description:<span id="description"> Clear</span>
-                    </ol>
-                  </ul>
+                <ul>
+                  <ol>
+                    <span id="daytime">Thursday 14:20</span>
+                  </ol>
+                  <ol>
+                    Windspeed:
+                    <span id="speed">14</span
+                    >km/hr
+                  </ol>
+                  <ol>
+                    Description:<span id="description"> Clear</span>
+                  </ol>
+                </ul>
 
-                  <i class="fas fa-cloud fa-3x" style="color: #ffcece"></i>
-                </div>
-                <br />
                 <a
                   href="https://github.com/nolly-B/github-hosting/tree/main"
                   target="_blank"

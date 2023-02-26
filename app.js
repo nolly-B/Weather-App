@@ -26,21 +26,20 @@ function updateTime() {
 
 updateTime();
 
-function searchCity(event) {
+function submitCity(event) {
   event.preventDefault();
+  let inputElement = document.querySelector("#city-input");
+  let city = inputElement.value;
+  searchCity(`${city}`);
+}
+function searchCity(city) {
   let apiKey = `6d11t62a4230458ceod68b676fc63d83`;
-  let city = "Paris";
   let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}&units=metric`;
-
-  let input = document.querySelector("#query");
-
-  let h1 = document.querySelector("#newYork");
-  h1.innerHTML = city;
   axios.get(apiUrl).then(getTemperature);
 }
 
-let form = document.querySelector("#forms");
-form.addEventListener("submit", searchCity);
+let form = document.querySelector("#search-form");
+form.addEventListener("submit", submitCity);
 
 function getTemperature(response) {
   let currentTemperature = document.querySelector("#current-temperature");
