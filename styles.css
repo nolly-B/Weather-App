@@ -35,10 +35,9 @@ ul {
 }
 #links {
   position: relative;
-  left: 60px;
-  top: -50px;
+  left: 70px;
+  top: -70px;
   font-size: xx-large;
-  padding-bottom: -100px;
 }
 #description {
   text-transform: capitalize;

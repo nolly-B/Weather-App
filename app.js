@@ -6,7 +6,7 @@ function updateTime() {
   }
   let minute = now.getMinutes();
   if (minute < 10) {
-    `0${minute}`;
+    minute = `0${minute}`;
   }
   let daysOfTheWeek = [
     "Sunday",
@@ -29,9 +29,10 @@ updateTime();
 function searchCity(event) {
   event.preventDefault();
   let apiKey = `6d11t62a4230458ceod68b676fc63d83`;
-  let apiUrl = `https://api.shecodes.io/weather/v1/current?query=Pretoria&key=${apiKey}&units=metric`;
+  let city = "Paris";
+  let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}&units=metric`;
+
   let input = document.querySelector("#query");
-  let city = input.value;
 
   let h1 = document.querySelector("#newYork");
   h1.innerHTML = city;
@@ -42,7 +43,6 @@ let form = document.querySelector("#forms");
 form.addEventListener("submit", searchCity);
 
 function getTemperature(response) {
-  console.log(response.data);
   let currentTemperature = document.querySelector("#current-temperature");
   currentTemperature.innerHTML = Math.round(response.data.temperature.current);
   let heading = document.querySelector("#newYork");
@@ -51,4 +51,10 @@ function getTemperature(response) {
   windSpeed.innerHTML = Math.round(response.data.wind.speed);
   let description = document.querySelector("#description");
   description.innerHTML = response.data.condition.description;
+  let iconElement = document.querySelector("#weather-icon");
+  iconElement.setAttribute(
+    "src",
+    `http://shecodes-assets.s3.amazonaws.com/api/weather/icons/${response.data.condition.icon}.png`
+  );
+  iconElement.setAttribute("alt", response.data.condition.description);
 }
