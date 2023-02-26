@@ -39,6 +39,14 @@ ul {
   top: -70px;
   font-size: xx-large;
 }
+.active {
+  color: black;
+  cursor: default;
+}
+.active:hover {
+  text-decoration: none;
+}
+
 #description {
   text-transform: capitalize;
 }
