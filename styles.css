@@ -1,0 +1,45 @@
+body {
+  background: radial-gradient(
+    circle at -8.9% 51.2%,
+    rgb(255, 124, 0) 0%,
+    rgb(255, 124, 0) 15.9%,
+    rgb(255, 163, 77) 15.9%,
+    rgb(255, 163, 77) 24.4%,
+    rgb(0, 128, 128) 24.5%,
+    rgb(0, 128, 128) 66%
+  );
+}
+#weather-forecast {
+  font-size: 30px;
+}
+.btn-success {
+  position: relative;
+  left: 210px;
+
+  top: -37px;
+}
+#current-temperature {
+  font-size: xx-large;
+}
+
+ul {
+  top: -30px;
+  position: relative;
+  right: 60px;
+}
+#celsius-link {
+  text-decoration: none;
+}
+#fahrenheit-link {
+  text-decoration: none;
+}
+#links {
+  position: relative;
+  left: 60px;
+  top: -50px;
+  font-size: xx-large;
+  padding-bottom: -100px;
+}
+#description {
+  text-transform: capitalize;
+}
