@@ -50,3 +50,29 @@ ul {
 #description {
   text-transform: capitalize;
 }
+.weather-forecast {
+  margin-top: 20px;
+  text-align: center;
+}
+.weather-date {
+  font-size: 16px;
+  color: #000;
+  font-weight: 400;
+}
+#tue-icon {
+  position: relative;
+  right: 10px;
+}
+.weather-temperature {
+  font-size: 13px;
+}
+.minimum-temperature {
+  position: relative;
+  left: 13px;
+  top: -19px;
+  opacity: 0.5;
+}
+.maximum-temperature {
+  position: relative;
+  right: 10px;
+}
