@@ -26,6 +26,38 @@ function updateTime() {
 
 updateTime();
 
+function showForecast() {
+  let weatherForecast = document.querySelector("#weather");
+
+  let forecastElement = `<div class="row">`;
+  let weekDays = ["Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
+  weekDays.forEach(function (day) {
+    forecastElement =
+      forecastElement +
+      `
+  
+                    <div class="col-2">
+                      <div class="weather-date">${day}</div>
+                      <img
+                        src="http://shecodes-assets.s3.amazonaws.com/api/weather/icons/few-clouds-day
+.png"
+                        alt="Cloudy"
+                        id="tue-icon"
+                        width="45"
+                      />
+                      <div class="weather-temperature">
+                        <span class="maximum-temperature">17°</span>
+
+                        <span class="minimum-temperature">10°</span>
+                      </div>
+                    </div>
+                  `;
+  });
+
+  forecastElement = forecastElement + `</div>`;
+  weatherForecast.innerHTML = forecastElement;
+}
+
 function submitCity(event) {
   event.preventDefault();
   let inputElement = document.querySelector("#city-input");
@@ -78,6 +110,7 @@ function showCelsiusTemperature(event) {
 }
 
 let celsiusTemperature = null;
+showForecast();
 
 let fahrenheitLink = document.querySelector("#fahrenheit-link");
 fahrenheitLink.addEventListener("click", showFahrenheitTemperature);
