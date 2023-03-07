@@ -67,12 +67,9 @@ ul {
   font-size: 13px;
 }
 .minimum-temperature {
-  position: relative;
-  left: 13px;
-  top: -19px;
+  font-size: 10px;
   opacity: 0.5;
 }
 .maximum-temperature {
-  position: relative;
-  right: 10px;
+  font-size: 10px;
 }
