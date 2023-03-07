@@ -71,8 +71,7 @@ function showForecast(response) {
 }
 function fetchForecast(coordinates) {
   let apiKey = `6d11t62a4230458ceod68b676fc63d83`;
-
-  let apiUrl = `https://api.shecodes.io/weather/v1/forecast?lon=${coordinates.longitude}&lat=${coordinates.latitude}&key=${apiKey}&&units=metric`;
+let apiUrl = `https://api.shecodes.io/weather/v1/forecast?lon=${coordinates.longitude}&lat=${coordinates.latitude}&key=${apiKey}&&units=metric`;
   axios.get(apiUrl).then(showForecast);
 }
 
@@ -104,7 +103,7 @@ function getTemperature(response) {
   let iconElement = document.querySelector("#weather-icon");
   iconElement.setAttribute(
     "src",
-    `http://openweathermap.org/img/wn/${response.data.condition.icon}@2x.png`
+    `http://shecodes-assets.s3.amazonaws.com/api/weather/icons/${response.data.condition.icon}.png`
   );
   iconElement.setAttribute("alt", response.data.condition.description);
   celsiusTemperature = response.data.temperature.current;
