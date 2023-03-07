@@ -27,24 +27,11 @@ ul {
   position: relative;
   right: 60px;
 }
-#celsius-link {
-  text-decoration: none;
-}
-#fahrenheit-link {
-  text-decoration: none;
-}
 #links {
   position: relative;
-  left: 70px;
-  top: -70px;
+  left: 40px;
+  top: -69px;
   font-size: xx-large;
-}
-.active {
-  color: black;
-  cursor: default;
-}
-.active:hover {
-  text-decoration: none;
 }
 
 #description {
