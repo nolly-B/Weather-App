@@ -25,30 +25,44 @@ function updateTime() {
 }
 
 updateTime();
+function formatDay(timestamp) {
+  let date = new Date(timestamp * 1000);
+  let day = date.getDay();
+  let days = ["Sun", "Mon", "Tue", "Wed", "Thur", "Fri", "Sat"];
+  return days[day];
+}
 
-function showForecast() {
+function showForecast(response) {
+  console.log(response.data);
+  let forecastDetails = response.data.daily;
+
   let weatherForecast = document.querySelector("#weather");
 
   let forecastElement = `<div class="row">`;
-  let weekDays = ["Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
-  weekDays.forEach(function (day) {
+
+  forecastDetails.forEach(function (forecastDay) {
     forecastElement =
       forecastElement +
       `
   
                     <div class="col-2">
-                      <div class="weather-date">${day}</div>
+                      <div class="weather-date">${formatDay(
+                        forecastDay.dt
+                      )}</div>
                       <img
-                        src="http://shecodes-assets.s3.amazonaws.com/api/weather/icons/few-clouds-day
-.png"
-                        alt="Cloudy"
+                        src="http://openweathermap.org/img/wn/${
+                          response.data.weather[0].icon
+                        }@2x.png"
+
+                        alt=""
                         id="tue-icon"
                         width="45"
                       />
                       <div class="weather-temperature">
-                        <span class="maximum-temperature">17°</span>
-
-                        <span class="minimum-temperature">10°</span>
+                      ${formatDay(forecastDay.temp.max)}°</span>
+                        <span class="minimum-temperature">${formatDay(
+                          forecastDay.temp.min
+                        )}°</span>
                       </div>
                     </div>
                   `;
@@ -56,6 +70,12 @@ function showForecast() {
 
   forecastElement = forecastElement + `</div>`;
   weatherForecast.innerHTML = forecastElement;
+}
+function fetchForecast(coordinates) {
+  let apiKey = `2718952144ed077c12e7c160fb6fc351`;
+
+  let apiUrl = `https://api.openweathermap.org/data/3.0/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&&units=metric`;
+  axios.get(apiUrl).then(showForecast);
 }
 
 function submitCity(event) {
@@ -65,8 +85,8 @@ function submitCity(event) {
   searchCity(`${city}`);
 }
 function searchCity(city) {
-  let apiKey = `6d11t62a4230458ceod68b676fc63d83`;
-  let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}&units=metric`;
+  let apiKey = `2718952144ed077c12e7c160fb6fc351`;
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&&units=metric`;
   axios.get(apiUrl).then(getTemperature);
 }
 
@@ -74,23 +94,26 @@ let form = document.querySelector("#search-form");
 form.addEventListener("submit", submitCity);
 
 function getTemperature(response) {
-  console.log(response.data);
+  console.log(response);
   let currentTemperature = document.querySelector("#current-temperature");
-  currentTemperature.innerHTML = Math.round(response.data.temperature.current);
+  currentTemperature.innerHTML = Math.round(response.data.main.temp);
   let heading = document.querySelector("#newYork");
-  heading.innerHTML = response.data.city;
+  heading.innerHTML = response.data.name;
   let windSpeed = document.querySelector("#speed");
   windSpeed.innerHTML = Math.round(response.data.wind.speed);
   let description = document.querySelector("#description");
-  description.innerHTML = response.data.condition.description;
+  description.innerHTML = response.data.weather[0].description;
   let iconElement = document.querySelector("#weather-icon");
   iconElement.setAttribute(
     "src",
-    `http://shecodes-assets.s3.amazonaws.com/api/weather/icons/${response.data.condition.icon}.png`
+    `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
   );
-  iconElement.setAttribute("alt", response.data.condition.description);
-  celsiusTemperature = response.data.temperature.current;
+  iconElement.setAttribute("alt", response.data.weather[0].description);
+  celsiusTemperature = response.data.main.temp;
+
+  fetchForecast(response.data.coord);
 }
+
 function showFahrenheitTemperature(event) {
   event.preventDefault();
   let temperature = document.querySelector("#current-temperature");
@@ -110,7 +133,6 @@ function showCelsiusTemperature(event) {
 }
 
 let celsiusTemperature = null;
-showForecast();
 
 let fahrenheitLink = document.querySelector("#fahrenheit-link");
 fahrenheitLink.addEventListener("click", showFahrenheitTemperature);
